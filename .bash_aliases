@@ -1,40 +1,16 @@
-# ~/.profile: executed by the command interpreter for login shells.
-# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
-# exists.
-# see /usr/share/doc/bash/examples/startup-files for examples.
-# the files are located in the bash-doc package.
-
-# the default umask is set in /etc/profile; for setting the umask
-# for ssh logins, install and configure the libpam-umask package.
-#umask 022
-
-## if running bash
-#if [ -n "$BASH_VERSION" ]; then
-#    # include .bashrc if it exists
-#    if [ -f "$HOME/.bashrc" ]; then
-#	. "$HOME/.bashrc"
-#    fi
-#fi
-
-# set PATH so it includes user's private bin if it exists
-#if [ -d "$HOME/bin" ] ; then
-#    PATH="$HOME/bin:$PATH"
-#fi
-
-
 ###########################
 ## cardoppler 2014-01-11 ##
 ###########################
 
-# This file must be placed in: ~/.bashrc
+# This file is ~/.bash_aliases and gets loaded by ~/.bashrc
 
 alias c='clear;ls'
 
 alias l='ls' # For mispelling of ls
+alias ls-al='ls -al'
 alias le='ls -althp' # List Extendes with less
 alias lg='ls -althp | grep -i' # List and grep
 alias lr='ls -la $(find .) | less' # list recursive
-
 
 alias pingoo='ping -c 3 -s.1 www.google.com'
 alias path='echo $PATH'
@@ -49,34 +25,34 @@ export HISTTIMEFORMAT='%F %T ' #add date and time to the history
 alias cd..="cd .."	# Correction for mispelling
 alias ..="cd .."
 
-alias vi=vim
-
 alias fail="tail -f"
 
 alias tree='tree | less'
 
 # Git
 alias ga='git add'
+alias gd='git diff'
 alias gs='git status'
-alias gr='git remote -v'
 alias gc='git commit -a -m'
-alias gpush='git push -u origin'
-alias gpom='git push -u origin master'
+alias gpush='git push -u origin master'
+alias gpull='git pull'
 
 
 
 
-# Find filename
+# Find Filename
+# 2 arguments:
+# A) From which directory the serach should start and
+# B) for which filename it should look for
 function ff {
-    find | grep -i $1
-}
-
-# Find String
-function fs {
-    find | grep ir $1
+    find $1 | grep -i $2
 }
 
 
+# Returns the absolute path of a given file
+function ap() {
+        find "`pwd`" -name $1
+}
 
 # History Grep
 function hg {
@@ -87,14 +63,11 @@ function hg {
 eval "$(lesspipe)" # allows "less" command to open any kind of file type
 
 # Avoid quitting the shell when hitting CTRL+D too many times by mistake
-set -o ignoreeof
+#set -o ignoreeof
 
 # Multi-line commands are appended to the history as a single line. Useful for later command editing.
 shopt -s cmdhist
 
-# History autocomplete on what's already been typed.
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
 
 # Avoid duplicate, spaces, and /^\s/ in history.
 # IF you put a space before the command, it won't be shown in the history [which can be used on purpose]
@@ -116,7 +89,7 @@ HISTFILESIZE=2000
 shopt -s checkwinsize
 
 # Change schema and color in the terminal:
-#PS1="\e[0;31m\u\e[m\e[0;33m@\e[m\e[0;31m\h\e[m\e[0;33m \W\e[m : "
+PS1="\e[0;31m\u\e[m\e[0;33m@\e[m\e[0;31m\h\e[m\e[0;33m \W\e[m : "
 
 export BROWSER='google-chrome'
 export EDITOR='vim'
@@ -138,10 +111,10 @@ function scan_network()
 }
 
 
-function my_ip()
+function myip()
 {
     ifconfig -a
-    echo "External IP: "; curl rar.nu/myip.php
+    echo "External IP: "; curl ifconfig.me
 }
 
 # List available wireless networks
@@ -159,9 +132,7 @@ google-chrome "https://www.google.com/#q=${@}&safe=off"
 # google-chrome "http://translate.google.com/#en/it/${@}"
 
 
-function ap() {
-        find "`pwd`" -name $1
-}
+
 
 
 alias ports="sudo netstat -tulanp"
@@ -178,12 +149,9 @@ alias reboot='sudo /sbin/reboot'
 alias shutdown='sudo /sbin/shutdown'
 alias poweroff='sudo /sbin/poweroff'
 
-alias tcpdump="sudo tcpdump -i wlan0"
-
-alias iwconfig="iwconfig wlan0"
-
 alias meminfo="free -m -l -t -h"
 alias cpuinfo="lscpu"
+alias diskinfo="udisksctl status"
 
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
