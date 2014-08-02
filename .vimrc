@@ -32,9 +32,11 @@ set showmode
 
 " Show the filename in the window titlebar
 set title
- 
-set showcmd " display incomplete commands
 
+set showcmd " display incomplete commands at the bottom
+
+
+set autoread "Reload files changed outside vim
 
 set clipboard=unnamed   " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 
@@ -66,9 +68,10 @@ set nostartofline
 
 " Spaces, indent, tabs
 " Needed for Syntax Highlighting and stuff
-filetype plugin indent on " load file type plugins + indentation
+filetype plugin on " load file type plugins + indentation
 filetype indent on        " activates indenting for files
 set nowrap " don't wrap lines
+set linebreak "Wrap lines at convenient points
 set expandtab " use spaces, not tabs (optional)
 set backspace=indent,eol,start " backspace through everything in insert mode
 set autoindent smartindent
@@ -80,6 +83,11 @@ set softtabstop=4
 set shiftround            " always indent/outdent to the nearest tabstop
 set diffopt=vertical " Start diff mode with vertical splits
 
+
+" ================ Folds ============================
+set foldmethod=indent "fold based on indent
+set foldnestmax=3 "deepest fold is 3 levels
+set nofoldenable "dont fold by default
 
 
 " searching
@@ -105,18 +113,36 @@ set grepprg=grep\ -nH\ $*
 "set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 "set list
 
+" Display tabs and trailing spaces visually with a dot --> 
+set list listchars=tab:\ \ ,trail:·
 
-set scrolloff=5 " Start scrolling 5 lines before the horizontal window border
-set sidescrolloff=5 " keep at least 5 lines left/right
+set scrolloff=15 " Start scrolling X lines before the horizontal window border
+set sidescrolloff=15 " keep at least X lines left/right
+set sidescroll=1
+
 
 set noerrorbells " No error bells please
+set visualbell "No sounds
+
 set wildmenu " menu has tab completion
 
 set cul " highlight current line
 hi CursorLine term=none cterm=none ctermbg=0* " adjust color
 
 
+"Store lots of :cmdline history
+set history=1000
 
+
+
+" ================ Persistent Undo ==================
+ " Keep undo history across sessions, by storing in file.
+ " Only works all the time.
+if has('persistent_undo')
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+endif
 
 " Centralize backups, swapfiles and undo history
 " You need to manually create the folders 
@@ -125,6 +151,8 @@ set directory=~/.vim/swaps
 if exists("&undodir")
     set undodir=~/.vim/undo
 endif
+set nobackup
+set nowb
 
 
 
