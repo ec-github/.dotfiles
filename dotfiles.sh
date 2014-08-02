@@ -4,8 +4,8 @@
 
 dir=~/dotfiles  # where the dotfiles are. This folder is synced with GitHub
 
-cd $dir
-for file in dir do
-        echo -n "symlink $file"
-#       ln -s $dir/$file ~/.$file
+for file in $dir/* # for all files in this directory
+do
+        filename=$(echo $file | awk -F "/" '{ print $NF }') # returns only the filename
+	ln -s $dir/$file ~/$filename
 done
