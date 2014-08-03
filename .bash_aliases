@@ -172,3 +172,6 @@ alias internet_speed='wget -O /dev/null http://speedtest.wdc01.softlayer.com/dow
 if [[ -e ~/bin/ec/bashrc_ec ]] ; then
     source ~/bin/ec/bashrc_ec
 fi
+
+# Shows hidden files in autocompletion
+bind 'set match-hidden-files on'
