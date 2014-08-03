@@ -89,7 +89,7 @@ HISTFILESIZE=2000
 shopt -s checkwinsize
 
 # Change schema and color in the terminal:
-PS1="\e[0;31m\u\e[m\e[0;33m@\e[m\e[0;31m\h\e[m\e[0;33m \W\e[m : "
+#PS1="\e[0;31m\u\e[m\e[0;33m@\e[m\e[0;31m\h\e[m\e[0;33m \W\e[m : "
 
 export BROWSER='google-chrome'
 export EDITOR='vim'
