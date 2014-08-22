@@ -59,7 +59,7 @@ function hg {
         history | grep -i $1
 }
 
-
+alias less='less -N'
 eval "$(lesspipe)" # allows "less" command to open any kind of file type
 
 # find the IP addresses that are currently online in your network
