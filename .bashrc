@@ -12,9 +12,19 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it. make writing to .bash_history immediate
+# append to the ~/.bash_history file.
 shopt -s histappend
+
+# make writing to .bash_history immediate so you can share the history of the commands between different terminals without having to close the session
+# -a run at each shell prompt and immediately writes the current/new lines to the history file.
+# -c clears the history of the running session. This will reduce the history counter by the amount of $HISTSIZE.
+# -r read the contents of $HISTFILE and insert them in to the current running session history. this will raise the history counter by the amount of lines in $HISTFILE. 
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Add the date to the history commands
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
+
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
