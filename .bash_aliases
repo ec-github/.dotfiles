@@ -62,48 +62,6 @@ function hg {
 
 eval "$(lesspipe)" # allows "less" command to open any kind of file type
 
-# Avoid quitting the shell when hitting CTRL+D too many times by mistake
-#set -o ignoreeof
-
-# Multi-line commands are appended to the history as a single line. Useful for later command editing.
-shopt -s cmdhist
-
-
-# Avoid duplicate, spaces, and /^\s/ in history.
-# IF you put a space before the command, it won't be shown in the history [which can be used on purpose]
-HISTCONTROL=ignoredups:ignorespace
-
-
-# Ignore the following commands in the history:
-export HISTIGNORE='&:l:ls:le:ll:la:exit:c:clear:ls -al:ls -l:pwd:history:h'
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# history length
-HISTSIZE=2000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# Change schema and color in the terminal:
-#PS1="\e[0;31m\u\e[m\e[0;33m@\e[m\e[0;31m\h\e[m\e[0;33m \W\e[m : "
-
-export BROWSER='google-chrome'
-export EDITOR='vim'
-set bell-style visible # avoid noise
-set -o notify # notify when jobs running in background terminate
-
-
-export LS_COLORS=""
-
-# The following do not work:
-#shopt -s nocaseglob
-#shopt -s extglob # necessary for bash completion (programmable completion)
-#shopt -s cdspell # this will correct minor spelling errors in a cd command
-
 # find the IP addresses that are currently online in your network
 function scan_network()
 {
@@ -168,10 +126,16 @@ alias top="htop"
 alias internet_speed='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
 
+
+
+
+
+
+
+
+
+
 ### EveryCity Scripts ###
 if [[ -e ~/bin/ec/bashrc_ec ]] ; then
     source ~/bin/ec/bashrc_ec
 fi
-
-# Shows hidden files in autocompletion
-bind 'set match-hidden-files on'

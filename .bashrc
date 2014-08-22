@@ -8,31 +8,11 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the ~/.bash_history file.
-shopt -s histappend
-
-# make writing to .bash_history immediate so you can share the history of the commands between different terminals without having to close the session
-# -a run at each shell prompt and immediately writes the current/new lines to the history file.
-# -c clears the history of the running session. This will reduce the history counter by the amount of $HISTSIZE.
-# -r read the contents of $HISTFILE and insert them in to the current running session history. this will raise the history counter by the amount of lines in $HISTFILE. 
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-# Add the date to the history commands
-export HISTTIMEFORMAT="%d/%m/%y %T "
 
 
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -109,6 +89,16 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+
+
+
+
+
+
+
+### cardoppler stuff below ###
+
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -129,3 +119,60 @@ fi
 if [ -f /etc/bash_completion ]; then
          . /etc/bash_completion 
 fi
+
+### HISTORY ###
+# don't put duplicate lines or lines starting with space in the history.
+# Avoid duplicate, spaces, and /^\s/ in history.
+# IF you put a space before the command, it won't be shown in the history [which can be use     73 d on purpose]
+HISTCONTROL=ignoreboth:ignoredups:ignorespace
+
+# append to the ~/.bash_history file.
+shopt -s histappend
+
+# Multi-line commands are appended to the history as a single line. Useful for later command editing.
+shopt -s cmdhist
+
+# make writing to .bash_history immediate so you can share the history of the commands between different terminals without having to close the session
+# -a run at each shell prompt and immediately writes the current/new lines to the history file.
+# -c clears the history of the running session. This will reduce the history counter by the amount of $HISTSIZE.
+# -r read the contents of $HISTFILE and insert them in to the current running session history. this will raise the history counter by the amount of lines in $HISTFILE. 
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Add the date to the history commands
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
+# Ignore the following commands in the history:
+export HISTIGNORE='&:l:ls:le:ll:la:exit:c:clear:ls -al:ls -l:pwd:history:h'
+
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=2000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Change schema and color in the terminal:
+#PS1="\e[0;31m\u\e[m\e[0;33m@\e[m\e[0;31m\h\e[m\e[0;33m \W\e[m : "
+
+export BROWSER='google-chrome'
+export EDITOR='vim'
+set bell-style visible # avoid noise
+set -o notify # notify when jobs running in background terminate
+
+export LS_COLORS=""
+
+# Shows hidden files in autocompletion
+bind 'set match-hidden-files on'
+
+
+
+# Avoid quitting the shell when hitting CTRL+D too many times by mistake
+#set -o ignoreeof
+
+# The following do not work:
+#shopt -s nocaseglob
+#shopt -s extglob # necessary for bash completion (programmable completion)
+#shopt -s cdspell # this will correct minor spelling errors in a cd command
+
