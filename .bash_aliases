@@ -98,7 +98,7 @@ alias ports="sudo netstat -tulanp"
 # So all the commands run even when using sudo [which otherwise ignore bashrc]
 alias sudo='sudo '
 
-alias diff='colordiff'
+alias diff='colordiff -c'
 
 # do not delete / or prompt if deleting more than 3 files at a time #
 alias rm='rm -I --preserve-root'
