@@ -16,6 +16,7 @@ alias pingoo='ping -c 3 -s.1 www.google.com'
 alias path='echo $PATH'
 
 alias pg='ps -ef | grep -i'
+alias pt='ps -ef --forest'
 
 alias h='history'
 alias j="jobs -l"
