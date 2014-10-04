@@ -176,3 +176,5 @@ bind 'set match-hidden-files on'
 #shopt -s extglob # necessary for bash completion (programmable completion)
 #shopt -s cdspell # this will correct minor spelling errors in a cd command
 
+# Automatically start ssh-agent automatically when starting a login shell.
+eval $(ssh-agent)
