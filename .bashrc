@@ -176,3 +176,6 @@ bind 'set match-hidden-files on'
 #shopt -s extglob # necessary for bash completion (programmable completion)
 #shopt -s cdspell # this will correct minor spelling errors in a cd command
 
+if [[ -e ~/bin/ec/bashrc_ec ]] ; then
+            source ~/bin/ec/bashrc_ec
+fi

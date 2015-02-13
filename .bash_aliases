@@ -127,9 +127,10 @@ alias top="htop"
 alias internet_speed='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
 
-
-
-
+# add integration for apache and group together www.domain.com and domain.com
+function domains-to-ips() {
+    while read line; do echo "" ; host $line ; done < $1
+}
 
 
 
