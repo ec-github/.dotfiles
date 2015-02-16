@@ -179,3 +179,10 @@ bind 'set match-hidden-files on'
 if [[ -e ~/bin/ec/bashrc_ec ]] ; then
             source ~/bin/ec/bashrc_ec
 fi
+
+# Automatically start ssh-agent automatically when starting a login shell.
+#eval $(ssh-agent)
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+      eval `ssh-agent -s`
+        ssh-add
+    fi

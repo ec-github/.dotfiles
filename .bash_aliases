@@ -129,7 +129,7 @@ alias internet_speed='wget -O /dev/null http://speedtest.wdc01.softlayer.com/dow
 
 # add integration for apache and group together www.domain.com and domain.com
 function domains-to-ips() {
-    while read line; do echo "" ; host $line ; done < $1
+    for domain in `cat $1 | awk '{print $4}' | rev | sort -u | rev` ; do echo "" ; host $domain ; done
 }
 
 
