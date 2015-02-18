@@ -2,9 +2,9 @@
 
 SS=/usr/bin/xfce4-screenshooter
 DIR_PATH=/home/riccardo/Pictures/
-DOMAIN=https://linux01.everycity.co.uk/~riccardo/
+DOMAIN=https://somedomain/com/~riccardo/
 RSYNC=/usr/bin/rsync
-LOGINS=riccardo@linux01:~/public_html
+LOGINS=usernmae@server:~/public_html
 XCLIP=/usr/bin/xclip
 
 $SS -r --save=$DIR_PATH
