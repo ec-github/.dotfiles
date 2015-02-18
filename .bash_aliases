@@ -133,6 +133,14 @@ function domains-to-ips() {
 }
 
 
+function upload() {
+        echo Uploading $1 to https://linux01.everycity.co.uk/~riccardo/$1
+            rsync -axvEP $1 riccardo@linux01:~/public_html
+}
+
+lp() {
+          lpass ls --sync=no |grep $1 | awk '{$3=substr($3,1,length($3)-1); print $3}' |xargs -n1 lpass show
+}
 
 
 
@@ -141,3 +149,6 @@ function domains-to-ips() {
 if [[ -e ~/bin/ec/bashrc_ec ]] ; then
     source ~/bin/ec/bashrc_ec
 fi
+
+
+
